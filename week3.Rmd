@@ -113,3 +113,16 @@ caro_moving%>%
   ggtitle("Moving segments coloured by segment ID (removed segments <5)")
 ```
 
+```{r}
+pedestrians <- read_delim("pedestrian.txt",",")
+```
+
+```{r}
+ggplot(pedestrians, aes(E, N, color=TrajID))  +
+  geom_path() +
+  geom_point() +
+  coord_equal()+
+  facet_wrap(~TrajID)+
+  labs(title="visual comparison of the 6 trajectories", subtitle="Each subplot highlights a trajectory")
+```
+
