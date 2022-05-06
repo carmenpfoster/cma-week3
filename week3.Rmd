@@ -63,3 +63,12 @@ caro_filter%>%
   theme(legend.position = "bottom")
 ```
 
+```{r}
+caro%>%
+  ggplot(aes(E, N))  +
+  geom_path() +
+  geom_point(aes(color=static)) +
+  coord_equal()+
+  ggtitle("Visualizing calculated rest points")
+```
+
