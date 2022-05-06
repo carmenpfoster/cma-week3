@@ -72,3 +72,44 @@ caro%>%
   ggtitle("Visualizing calculated rest points")
 ```
 
+```{r}
+rle_id <- function(vec){
+  x <- rle(vec)$lengths
+  as.factor(rep(seq_along(x), times=x))
+  }
+```
+
+```{r}
+caro <- caro %>%
+  mutate(segment_id = rle_id(static))
+
+caro
+```
+
+```{r}
+caro_moving <- caro %>% 
+  filter(caro$static == FALSE)
+
+caro_moving%>%
+  ggplot(aes(E, N, color=segment_id))  +
+  geom_path() +
+  geom_point() +
+  coord_equal()+
+  ggtitle("Moving segments coloured by segment ID (uncleaned)")
+```
+
+```{r}
+caro_moving <- caro_moving %>% 
+  group_by(segment_id) %>% 
+  mutate(count= n()) %>% 
+  ungroup() %>% 
+  filter(count>5)
+
+caro_moving%>%
+  ggplot(aes(E, N, color=segment_id))  +
+  geom_path() +
+  geom_point() +
+  coord_equal()+
+  ggtitle("Moving segments coloured by segment ID (removed segments <5)")
+```
+
