@@ -5,10 +5,11 @@ date: '2022-05-06'
 output: html_document
 ---
 
-```{r}
+```{r message = FALSE}
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(tidyverse)
 
 caro <- read_delim("caro60.txt",",")
 ```
@@ -183,8 +184,6 @@ distances <- data.frame(
   Frechet = Frechet1,
   LCSS = LCSS1
 )
-
-library(tidyverse)
 
 distances_long <- distances %>% 
   pivot_longer(-traj)
