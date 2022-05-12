@@ -128,7 +128,6 @@ ggplot(pedestrians, aes(E, N, color=TrajID))  +
 ```
 
 ```{r}
-install.packages("SimilarityMeasures")
 library(SimilarityMeasures)
 
 pedestrians <- select(pedestrians, -DatetimeUTC)
@@ -192,7 +191,7 @@ distances_long <- distances %>%
 ggplot(distances_long, aes(x=traj, y=value, fill=as.factor(traj)))  +
   geom_col()+
   facet_wrap(~name, scales = "free_y")+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
   labs(title="visual comparison of the 6 trajectories", subtitle="Each subplot highlights a trajectory")
 ```
 
